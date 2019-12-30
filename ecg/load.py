@@ -60,7 +60,7 @@ def compute_mean_std(x):
     x = np.hstack(x)
     return (np.mean(x).astype(np.float32),
            np.std(x).astype(np.float32))
-
+#加载数据集，ecgs为心电值集合，labels为标签集合
 def load_dataset(data_json):
     with open(data_json, 'r') as fid:
         data = [json.loads(l) for l in fid]
@@ -83,7 +83,7 @@ def load_ecg(record):
     return ecg[:trunc_samp]
 
 if __name__ == "__main__":
-    data_json = "examples/cinc17/train.json"
+    data_json = "../examples/cinc17/train.json"
     train = load_dataset(data_json)
     preproc = Preproc(*train)
     gen = data_generator(32, preproc, *train)

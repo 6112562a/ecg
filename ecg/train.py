@@ -25,7 +25,7 @@ def make_save_dir(dirname, experiment_name):
 
 def get_filename_for_saving(save_dir):
     return os.path.join(save_dir,
-            "{val_loss:.3f}-{val_acc:.3f}-{epoch:03d}-{loss:.3f}-{acc:.3f}.hdf5")
+            "{val_loss:.3f}-{val_accuracy:.3f}-{epoch:03d}-{loss:.3f}-{accuracy:.3f}.hdf5")
 
 def train(args, params):
 
@@ -89,5 +89,10 @@ if __name__ == '__main__':
     parser.add_argument("--experiment", "-e", help="tag with experiment name",
                         default="default")
     args = parser.parse_args()
-    params = json.load(open(args.config_file, 'r'))
+    file = open(args.config_file, 'r', encoding='utf-8')
+    # params = []
+    # for line in file.readlines():
+    #     dic = json.loads(line)
+    #     params.append(dic)
+    params = json.load(file)
     train(args, params)
